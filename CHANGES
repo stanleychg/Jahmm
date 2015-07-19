@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+0.7.1 (fork of the experimental fork)
+---------------------------------------
+- Updated OpdfGenericReader.java to include subclass OpdfMultiGaussianMixtureReader
+- Support for numbers in scientific notation when reading HMM from file
+
 0.7.0 (experimental fork to support GMM)
 ---------------------------------------
 - Implementation of MultiGaussianMixtureDistribution
