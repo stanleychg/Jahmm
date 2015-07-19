@@ -75,8 +75,24 @@ public abstract class OpdfReader<O extends Opdf<?>>
 	{
 		List<Double> l = new ArrayList<Double>();
 		HmmReader.readWords(st, "[");
-		while (st.nextToken() == StreamTokenizer.TT_NUMBER)
-			l.add(st.nval);
+
+        //Workaround for scientific notation
+        while(true){
+            int state = st.nextToken();
+            if (state == StreamTokenizer.TT_NUMBER){
+                l.add(st.nval);
+                
+            } else if (state == StreamTokenizer.TT_WORD){
+                
+                Double temp = Double.parseDouble(st.nval + st.sval);
+                
+                l.set(l.size()-1,temp);
+                
+            } else {
+                break;
+            }
+        }
+
 		st.pushBack();
 		HmmReader.readWords(st, "]");
 
